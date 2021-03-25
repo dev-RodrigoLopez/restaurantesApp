@@ -9,6 +9,8 @@ class Detalles extends StatelessWidget {
   Widget build(BuildContext context) {
     final tamano = MediaQuery.of(context).size;
     final restaurante = Provider.of<NewRestaurant>(context).restaurante;
+    // String idrestaurante = Provider.of<NewRestaurant>(context).idrestaurante;
+    // String nombrerestaurante = Provider.of<NewRestaurant>(context).nombrerestaurante;
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(
@@ -86,17 +88,14 @@ class Detalles extends StatelessWidget {
         },
       ),
       floatingActionButton: FloatingActionButton(
-        child: Icon(Icons.access_time),
+        child: Icon(Icons.add_comment),
+        backgroundColor: Colors.red[500],
         onPressed: () {
-          final comentarios = new Comentario();
-          final restaurante = new NewRestaurant();
-          // comentarios.comments = "Comentario 3";
-          // comentarios.email = "test3@test.com";
-          // comentarios.rating = "2";
-          // comentarios.restaurant = "33132e88-fbbf-4b3e-9667-6f3bbdbfd013";
-          // comentarios.created = null;
-          // comentarios.slug = null;
-          restaurante.insertComentario(comentarios);
+          // final comentarios = new Comentario();
+          // final restaurante = new NewRestaurant();
+          // restaurante.insertComentario(comentarios);
+          // idrestaurante = restaurante.slug;
+          Navigator.pushNamed(context, 'comentar');
         },
       ),
     );

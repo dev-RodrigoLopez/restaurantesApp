@@ -160,7 +160,9 @@ class _Logo extends StatelessWidget {
       child: FadeInImage(
         fit: BoxFit.cover,
         placeholder: AssetImage('assets/img/giphy.gif'),
-        image: NetworkImage(restaurante.logo),
+        image: (restaurante.logo != null)
+        ? NetworkImage(restaurante.logo)
+        : AssetImage('assets/img/no-image.png'),
       ),
     );
   }
