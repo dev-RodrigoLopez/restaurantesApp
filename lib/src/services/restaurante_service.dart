@@ -7,22 +7,19 @@ import 'package:restaurantes_app/src/models/restaurante_model.dart';
 
 final _URL = 'https://tellurium.behuns.com/api';
 
-class NewRestaurant with ChangeNotifier{
-
+class NewRestaurant with ChangeNotifier {
   List<Restaurantes> headline = [];
   Restaurantes _restaurant;
 
   Restaurantes get restaurante => this._restaurant;
 
-  set restaurante( Restaurantes value){
+  set restaurante(Restaurantes value) {
     this._restaurant = value;
     notifyListeners();
   }
 
-  NewRestaurant(){
-
+  NewRestaurant() {
     this.getTopHeadLines();
-
   }
 
   getTopHeadLines() async {
@@ -31,18 +28,26 @@ class NewRestaurant with ChangeNotifier{
     final url = '$_URL/restaurants/';
     final resp = await http.get(Uri.parse(url));
 
-    final newsResponse = restaurantesFromJson( resp.body );
+    final newsResponse = restaurantesFromJson(resp.body);
 
-    this.headline.addAll( newsResponse );
+    this.headline.addAll(newsResponse);
     notifyListeners();
   }
 
-  Future<bool> insertComentario( Comentario comentarios ) async {
-    final url ='$_URL/reviews/';
-    final resp = await http.post(Uri.parse(url), body: comentarioToJson(comentarios));
+  String restauran = "d6f43583-6b20-4e52-a947-9d6456145642";
+
+  Future<bool> insertComentario(Comentario comentarios) async {
+    final url = '$_URL/reviews/';
+    final resp =
+        // await http.post(Uri.parse(url), body: comentarioToJson(comentarios));
+        await http.post(Uri.parse(url), body: {
+      "restaurant": "$restauran",
+      "email": "test1@test.com",
+      "comments": "Comentario5",
+      "rating": "2"
+    });
     final decodedData = jsonDecode(resp.body);
     print(decodedData);
     return true;
   }
-
 }
